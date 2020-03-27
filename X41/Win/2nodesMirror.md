@@ -83,7 +83,7 @@ This article shows quick setup of a basic 2 nodes mirror cluster, which has floa
 
 1. Reboot the server
 
-### Setup basic cluster
+### A) Manulal Setup
 #### On Primary Server
 1. Start Cluster WebUI
 	- Desktop shortcut icon or http://localhost:29003
@@ -152,6 +152,66 @@ This article shows quick setup of a basic 2 nodes mirror cluster, which has floa
 	- Monitor
 		- Default
 1. Apply the Configuration
+
+### B) Auto Setup
+#### On Primary Server
+1. Download [tempalte configuration file](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/conf/2nodesMirror/clp.conf)
+	- e.g.) C:\tmp\clp.conf
+1. Download [tuning script](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/scripts/2nodesMirror.ps1)
+	- e.g.) C:\tmp\2nodesMirror.ps1
+1. Set parameters on 2nodesMirror.ps1 file.
+	- e.g.) If you want to edit parameters as follow:
+
+	| |hostname |
+	|-----------------|---------|
+	|Primary Server |Host1 |
+	|Secondary Server |Host2 |
+
+	| |Public IP |Private IP |
+	|-----------------|-----------------|-----------------|
+	|Primary Server |10.15.15.11 |192.168.101.11 |
+	|Secondary Server |10.15.15.12 |192.168.101.12 |
+	|fip |10.15.15.21 |- |
+	|Client |10.15.15.51 |- |
+	|Gateway |10.15.15.1 |- |
+
+	| |Drive Letter |
+	|------------------|-------------|
+	|Cluster Partition |M: |
+	|Data Partition |G: |
+	- Set as follow:
+	```bat
+	##### Set the following parameters #####
+	$originalConfPath = "C:\tmp"
+
+	$primary_serverName = "Host1"
+	$secondary_serverName = "Host2"
+
+	$primary_PublicIp = "10.15.15.11"
+	$primary_PrivateIp = "192.168.101.11"
+
+	$secondary_PublicIp = "10.15.15.12"
+	$secondary_PrivateIp = "192.168.101.12"
+
+	$gatewayIp = "10.15.15.1"
+
+	$fip = "10.15.15.21"
+
+	$clusterPartition = "M"
+	$dataPartition = "G"
+	#######################################
+	```
+1. Execute 2nodesMirror.ps1 as Powershell Script.  
+	Then, clp.conf is changed and zipped as "C:\tmp\clpconf_2nodeMirror_update.zip"
+
+1. Start Cluster WebUI
+	- Desktop shortcut icon or http://localhost:29003
+	- Move to Config Mode
+1.Click Import and select clpconf_2nodeMirror_update.zip.
+1. Apply the coniguration
+
+- **Note**
+	- This clp.conf and 2nodesMirror.ps1 are applicable same cluster configuration just to edit parameters but NOT to change cluster configuration such as adding/removing resources, NWs, detailed properties...
 
 ### Check cluster
 #### On Primary Server
