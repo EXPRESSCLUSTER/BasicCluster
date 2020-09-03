@@ -12,13 +12,13 @@ This article shows quick setup of a basic 2 nodes mirror cluster, which has floa
  |  |  +--------------------------------+
  +-----| Primary Server                 |
  |  |  |  OS: Windows Server            |
- |  +--|  EXPRESSCLUSTER X 4.1          |
+ |  +--|  EXPRESSCLUSTER X 4.1/4.2      |
  |  |  +--------------------------------+
  |  |
  |  |  +--------------------------------+
  +-----| Secondary Server               |
  |  |  |  OS: Windows Server            |
- |  +--|  EXPRESSCLUSTER X 4.1          |
+ |  +--|  EXPRESSCLUSTER X 4.1/4.2      |
  |  |  +--------------------------------+
  |  |
  |  |  +--------------------------------+
@@ -42,7 +42,7 @@ This article shows quick setup of a basic 2 nodes mirror cluster, which has floa
 ### Sample configuration
 - Primary/Secondary Server
 	- OS: Windows Server 2016/2019
-	- EXPRESSCLUSTER X: 4.1
+	- EXPRESSCLUSTER X: 4.1 or 4.2
 	- CPU: 2
 	- Memory: 8MB
 	- Disk
