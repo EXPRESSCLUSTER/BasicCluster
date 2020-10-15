@@ -31,7 +31,7 @@ This article shows quick setup of a basic 2 nodes mirror cluster, which has floa
 ### Requirements
 - All Primary Server, Secondary Server and Client machine sould be reachable with IP address.
 - Ports which EXPRESSCLUSTER requires should be opend.
-	- You can open ports by executing [OpenPort.bat](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat) on both servers
+	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers
 - 2 partitions are required for Mirror Disk Data Partition and Cluster Partition.
 	- Data Partition: Depends on mirrored data size (NTFS)
 	- Cluster Partition: 1GB, RAW (do not format this partition)
