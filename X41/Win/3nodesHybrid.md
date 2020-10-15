@@ -44,7 +44,7 @@ In hybrid cluster configuration, Primary Server and Secondary Servers at DC site
 - All Primary Server, Secondary Server, DR Server and Client machine sould be belongs a same network and reachable with IP address.
 	- **Note** If DC site and DR site are different network, Dynamic DNS Server and ddns resource are required instead of fip resource.
 - Ports which EXPRESSCLUSTER requires should be opend.
-	- You can open ports by executing [OpenPort.bat](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat) on both servers
+	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on all servers
 - 3 partitions are required for Primary Server and Secondary Servers
 	- Disk NP Partition: 20MB, RAW (do not format this partition)
 	- Cluster Partition: 1GB, RAW (do not format this partition)
