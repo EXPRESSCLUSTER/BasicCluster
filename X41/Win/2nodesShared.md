@@ -3,35 +3,38 @@
 ## Overview
 This article shows quick setup of a basic 2 nodes shred disk cluster, which has floating IP address feature (fip) and shared disk feature.
 For shared disk cluster configuration, Primary Server and Secondary Servers should have Shared Disk.
+Sample configuration in this article uses EXPRESSCLUSTER X 4.1 but this article is applicable not only for EXPRESSCLUSTER X 4.1 but also X 4.2 and 4.3.
 
 ## Reference
 Please also refer EXPRESSCLUSTER Manuals for more details:
-- [EXPRESSCLUSTER X 4.1 for Windows System Requirements](https://www.nec.com/en/global/prod/expresscluster/en/overview/sysrep_wx.html?)
-- [EXPRESSCLUSTER X 4.1 for Windows Getting Started Guide](https://www.nec.com/en/global/prod/expresscluster/en/support/Windows/W41_SG_EN_04.pdf)
-- [EXPRESSCLUSTER X 4.1 Installation Guide for Windows](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
+- [EXPRESSCLUSTER X 4 for Windows System Requirements](https://www.nec.com/en/global/prod/expresscluster/en/overview/sysrep_wx.html?)
+- [EXPRESSCLUSTER X 4 for Windows Getting Started Guide and Installation Guide](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
 
 ## Cluster System Configuration
+- Servers: 2 node with Shared Disk
+- OS: Windows Server 2016/2019
+- EXPRESSCLUSTER X: 4.0/4.1/4.2/4.3
 ```bat
 <Public LAN>
  |
  | <Private LAN>
  |  |
- |  |  +--------------------------------+           +-------------+
- +-----| Primary Server                 |           |             |
- |  |  |  OS: Windows Server            +===========+             |
- |  +--|  EXPRESSCLUSTER X 4.1/4.2      |           |             |
- |  |  +--------------------------------+           |   Shared    |
- |  |                                               |   Disk      |
- |  |  +--------------------------------+           |             |
- +-----| Secondary Server               |           |             |
- |  |  |  OS: Windows Server            +===========+             |
- |  +--|  EXPRESSCLUSTER X 4.1/4.2      |           |             |
- |  |  +--------------------------------+           +-------------
+ |  |  +---------------------------------+           +-------------+
+ +-----| Primary Server                  |           |             |
+ |  |  |  OS: Windows Server 2016/2019   +===========+             |
+ |  +--|  EXPRESSCLUSTER X: 4.1/4.2/4.3  |           |             |
+ |  |  +---------------------------------+           |   Shared    |
+ |  |                                                |   Disk      |
+ |  |  +---------------------------------+           |             |
+ +-----| Secondary Server                |           |             |
+ |  |  |  OS: Windows Server 2016/2019   +===========+             |
+ |  +--|  EXPRESSCLUSTER X: 4.1/4.2/4.3  |           |             |
+ |  |  +---------------------------------+           +-------------
  |  |
  |  |
- |  |  +--------------------------------+
+ |  |  +---------------------------------+
  +-----| Client machine                 |
- |  |  +--------------------------------+
+ |  |  +---------------------------------+
  |  |
  | [Switch]
  |  :
@@ -40,17 +43,19 @@ Please also refer EXPRESSCLUSTER Manuals for more details:
  :
 ```
 ### Requirements
-- Primary Server, Secondary Server and Client machine sould be reachable with IP address.
+- All Primary Server, Secondary Server and Client machine sould be reachable with IP address.
 - Ports which EXPRESSCLUSTER requires should be opend.
-	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on all servers
+	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers
+- In order to use fip resource, both servers should belong a same nework.
+	- If each server belongs to a different network, you can use ddns resource with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of fip address.
 - 2 partitions are required on Shared Disk:
 	- Disk NP Partition: 20MB, RAW (do not format this partition)
 	- Switch Partition: Depends on shared data size (NTFS)
 
 ### Sample configuration
 - Primary/Secondary Servers
-	- OS: Windows Server 2016/2019
-	- EXPRESSCLUSTER X: 4.1 or 4.2
+	- OS: Windows Server 2016
+	- EXPRESSCLUSTER X: 4.1
 	- CPU: 2
 	- Memory: 8MB
 	- Disk (Each server's local disk)
@@ -83,6 +88,13 @@ Please also refer EXPRESSCLUSTER Manuals for more details:
 |fip |10.1.1.21 |- |
 |Client machine |10.1.1.51 |- |
 |Gateway |10.1.1.1 |- |
+
+## Cluster configuration
+- failover group
+	- fip
+		- fip address: 10.1.1.21
+	- sd
+		- Switching Partition: E drive
 
 ## System setup
 ### Preparation
