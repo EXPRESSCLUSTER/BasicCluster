@@ -63,7 +63,7 @@ Please refer EXPRESSCLUSTER Guides for more detailed requirements or notificatio
 	- OS: Red Hat Enterprise Linux 7.7/7.8/8.1
 	- EXPRESSCLUSTER X: 4.1
 	- CPU: 2
-	- Memory: 8MB
+	- Memory: 8GB
 	- Disk
 		- /dev/sda (System Disk)
 		- /dev/sdb (Mirror Disk)
